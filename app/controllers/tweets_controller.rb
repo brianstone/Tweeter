@@ -3,7 +3,7 @@ class TweetsController < ApplicationController
 
   # GET /tweets
   def index
-    @tweets = Tweet.all
+    @tweets = $client.search("#overwatch")
 
     render json: @tweets
   end
