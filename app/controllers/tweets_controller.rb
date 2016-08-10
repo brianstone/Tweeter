@@ -3,7 +3,9 @@ class TweetsController < ApplicationController
 
   # GET /tweets
   def index
-    @tweets = $client.favorites("bbear500", count: 1)
+    @tweets = $client.search('#overwatch', result_type: "recent").take(3).collect do |tweet|
+      "#{tweet.user.screen_name}: #{tweet.text}"
+    end
 
     render json: @tweets
   end
